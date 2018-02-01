@@ -1,6 +1,24 @@
 # Rails box
+Vagrant box available [here](https://app.vagrantup.com/nu12/)
 
-## Initial Vagrantfile
+## Using the box
+Init the Vagrantfile with
+```shell
+vagrant init nu12/rails
+```
+Or configure Vagrantfile as below
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "nu12/rails"
+end
+```
+Access the box
+```shell
+vagrant up && vagrant ssh
+```
+
+## Box creation
+### Initial Vagrantfile
 
 ```
 Vagrant.configure("2") do |config|
@@ -9,7 +27,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-## Install Ruby and Rails
+### Install Ruby and Rails
 
 ```shell
 sudo apt-get update -y
@@ -29,13 +47,13 @@ rvm install 2.3.4
 rvm use 2.3.4 --default
 gem install rails -v 5.1.4 -N
 ```
-## Package
+### Package
 
 ```shell
 vagrant package --output rails.box --vagrantfile Vagrantfile
 ```
 
-## References
+### References
 
 [Node v8](http://nodesource.com/blog/installing-node-js-8-tutorial-linux-via-package-manager/)
 [Yarn](https://yarnpkg.com/lang/en/docs/install/)
