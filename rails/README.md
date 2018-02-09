@@ -38,14 +38,13 @@ sudo apt-get install -y nodejs
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
-sudo apt-get install git curl sqlite3 libsqlite3-dev
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 rvm requirements
-rvm install 2.3.4
-rvm use 2.3.4 --default
-gem install rails -v 5.1.4 -N
+rvm install 2.4.1
+rvm use 2.4.1 --default
+gem install rails -v 5.2.0.rc1 -N
 ```
 ### Package
 
@@ -55,6 +54,6 @@ vagrant package --output rails.box --vagrantfile Vagrantfile
 
 ### References
 
-[Node v8](http://nodesource.com/blog/installing-node-js-8-tutorial-linux-via-package-manager/)
-[Yarn](https://yarnpkg.com/lang/en/docs/install/)
-[Yarn & Rails](http://nithinbekal.com/posts/yarn-rails/)
+* [Node v8](http://nodesource.com/blog/installing-node-js-8-tutorial-linux-via-package-manager/)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+* [Yarn & Rails](http://nithinbekal.com/posts/yarn-rails/)
