@@ -67,7 +67,7 @@ User | Password
 root | root
 vagrant | vagrant
 
-```
+
 ### Package
 
 ```shell
