@@ -1,6 +1,26 @@
 # Rails box
 
-## Initial Vagrantfile
+Vagrant box available [here](https://app.vagrantup.com/nu12/)
+
+## Using the box
+Init the Vagrantfile with
+```shell
+vagrant init nu12/rails-mysql
+```
+Or configure Vagrantfile as below
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "nu12/rails-mysql"
+end
+```
+Access the box
+```shell
+vagrant up && vagrant ssh
+```
+
+## Box creation
+
+### Initial Vagrantfile
 
 ```
 Vagrant.configure("2") do |config|
@@ -9,18 +29,25 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-## Install Ruby and Rails
+### Install Ruby and Rails
 
 ```shell
+sudo apt-get purge -y sqlite3 libsqlite3-dev
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y mysql-server mysql-client libmysqlclient-dev
+```
 
-## Create vagrant user
+### Create vagrant user
+
+Enter mysql with root
 
 ```shell
 mysql -uroot -proot
 ```
+
+Create new user
+
 ```sql
 mysql> CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'vagrant';
 mysql> GRANT ALL PRIVILEGES ON * . * TO 'vagrant'@'localhost';
@@ -28,12 +55,20 @@ mysql> FLUSH PRIVILEGES;
 mysql> QUIT;
 ```
 
-### Available users and passwords
-User: root 		| Password: root
-User: vagrant 	| Password: vagrant
+Write mysql users at home directory
+
+```shell
+printf "User: root | Password: root\nUser: vagrant | Password: vagrant\n" > ~/mysql-users
+```
+
+#### Available users and passwords
+User | Password
+--- | ---
+root | root
+vagrant | vagrant
 
 ```
-## Package
+### Package
 
 ```shell
 vagrant package --output rails-mysql.box --vagrantfile Vagrantfile
