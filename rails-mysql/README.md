@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-### Install Ruby and Rails
+### Install Mysql
 
 ```shell
 sudo apt-get purge -y sqlite3 libsqlite3-dev
