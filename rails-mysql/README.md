@@ -40,14 +40,14 @@ sudo apt-get install -y mysql-server mysql-client libmysqlclient-dev
 
 ### Create vagrant user
 
-Enter mysql with root
+Guest machine
 
+Enter mysql with root
 ```shell
-mysql -uroot -proot
+sudo mysql
 ```
 
 Create new user
-
 ```sql
 mysql> CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'vagrant';
 mysql> GRANT ALL PRIVILEGES ON * . * TO 'vagrant'@'localhost';
@@ -56,20 +56,27 @@ mysql> QUIT;
 ```
 
 Write mysql users at home directory
-
 ```shell
-printf "User: root | Password: root\nUser: vagrant | Password: vagrant\n" > ~/mysql-users
+printf "User: vagrant | Password: vagrant\n" > ~/mysql-users
 ```
+
+#### Clear history before package
+
+Guest machine
+```shell
+rm -f $HISTFILE
+history -c
+sudo shutdown -h now
 
 #### Available users and passwords
 User | Password
 --- | ---
-root | root
 vagrant | vagrant
 
 
 ### Package
 
+Host machine
 ```shell
 vagrant package --output rails-mysql.box --vagrantfile Vagrantfile
 ```

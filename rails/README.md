@@ -22,32 +22,37 @@ vagrant up && vagrant ssh
 
 ```
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "nu12/ruby"
   config.vm.network "forwarded_port", guest: 3000, host: 3000
 end
 ```
 
-### Install Ruby and Rails
+### Install Rails
 
+Guest machine
 ```shell
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install -y git curl sqlite3 libsqlite3-dev
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
-rvm requirements
-rvm install 2.4.1
-rvm use 2.4.1 --default
-gem install rails -v 5.2.0.rc1 -N
+gem install rails -v 5.2.1 -N
 ```
+
+#### Clear history before package
+
+Guest machine
+```shell
+rm -f $HISTFILE
+history -c
+sudo shutdown -h now
+```
+
 ### Package
 
+Host machine
 ```shell
 vagrant package --output rails.box --vagrantfile Vagrantfile
 ```
