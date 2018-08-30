@@ -50,7 +50,6 @@ unset HISTFILE
 cat /dev/null > /root/.bash_history
 cat /dev/null > /home/vagrant/.bash_history
 rm -f $HISTFILE
-history -c
  
 # Cleanup log files
 printf "STEP: Cleanup log files\n"
