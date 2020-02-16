@@ -5,5 +5,5 @@ update:
 
 build:
 	for i in ruby rails ; do \
-		(cd ./$$i; vagrant up; vagrant package --output $$i.box --vagrantfile Vagrantfile; vagrant destroy -f); \
+		(cd ./$$i; vagrant up; vagrant package --output $$i.box --vagrantfile Vagrantfile.build; vagrant destroy -f); \
 	done
